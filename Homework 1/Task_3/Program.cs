@@ -16,11 +16,10 @@ namespace Task_3
 
         static void Main(string[] args)
         {
-            
+
             string[] array0_19 = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
                 "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
             string[] array20_90 = { "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
-
 
             Console.Write("Enter the number between 100 and 999: ");
             int number = Convert.ToInt32(Console.ReadLine());
@@ -46,10 +45,7 @@ namespace Task_3
             else
             {
                 Console.WriteLine("Invalid number!");
-                Console.ReadKey();
-                return;
             }
-
             Console.ReadKey();
         }
     }
