@@ -54,13 +54,11 @@ namespace Task6
                     max5 = array2D[i, 4];
                 }
             }
-
             Console.WriteLine($"Maximum value in a column 1: {max1}");
             Console.WriteLine($"Maximum value in a column 2: {max2}");
             Console.WriteLine($"Maximum value in a column 3: {max3}");
             Console.WriteLine($"Maximum value in a column 4: {max4}");
             Console.WriteLine($"Maximum value in a column 5: {max5}");
-
             Console.ReadKey();
         }
     }
