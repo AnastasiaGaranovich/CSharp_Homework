@@ -36,7 +36,8 @@ namespace Task2
 
             int sizeB = sizeM + sizeN;
             int[] arrayB = new int[sizeB];
-            int indexB = 0;
+            arrayB = arrayM.Union(arrayN).ToArray();  //This method does something like this at a lower level, I think
+            /*int indexB = 0;
             for (int i = 0; i < sizeM; i++)
             {
                 bool exists = false;
@@ -72,9 +73,15 @@ namespace Task2
                     indexB++;
                 }
             }
-            Console.WriteLine();
             Console.WriteLine("ArrayB");
             for (int i = 0; i < indexB; i++)
+            {
+                Console.Write($"{arrayB[i]} ");
+            }*/
+
+            Console.WriteLine();
+            Console.WriteLine("ArrayB");
+            for (int i = 0; i < arrayB.Length; i++)
             {
                 Console.Write($"{arrayB[i]} ");
             }

@@ -23,7 +23,7 @@ namespace Task1
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    arrayB[i, j] = random.NextDouble();
+                    arrayB[i, j] = Math.Round(random.NextDouble(), 2);
                 }
             }
         }
