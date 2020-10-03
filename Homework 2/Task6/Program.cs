@@ -25,40 +25,29 @@ namespace Task6
                 Console.WriteLine();
             }
 
-            int max1 = int.MinValue;
-            int max2 = int.MinValue;
-            int max3 = int.MinValue;
-            int max4 = int.MinValue;
-            int max5 = int.MinValue;
+            int[] max_array = new int[5];
+
+            for (int i = 0; i < max_array.Length; i++)
+            {
+                max_array[i] = int.MinValue;
+            }
 
             for (int i = 0; i < 5; i++)
             {
-                if (max1 < array2D[i, 0])
+                for (int j = 0; j < 5; j++)
                 {
-                    max1 = array2D[i, 0];
-                }
-                if (max2 < array2D[i, 1])
-                {
-                    max2 = array2D[i, 1];
-                }
-                if (max3 < array2D[i, 2])
-                {
-                    max3 = array2D[i, 2];
-                }
-                if (max4 < array2D[i, 3])
-                {
-                    max4 = array2D[i, 3];
-                }
-                if (max5 < array2D[i, 4])
-                {
-                    max5 = array2D[i, 4];
+                    if (max_array[j] < array2D[i, j])
+                    {
+                        max_array[j] = array2D[i, j];
+                    }
                 }
             }
-            Console.WriteLine($"Maximum value in a column 1: {max1}");
-            Console.WriteLine($"Maximum value in a column 2: {max2}");
-            Console.WriteLine($"Maximum value in a column 3: {max3}");
-            Console.WriteLine($"Maximum value in a column 4: {max4}");
-            Console.WriteLine($"Maximum value in a column 5: {max5}");
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"Maximum value in a column {i + 1}: {max_array[i]}");
+            }
+
             Console.ReadKey();
         }
     }
