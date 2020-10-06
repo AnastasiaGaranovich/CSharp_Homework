@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    class DishwasherDrying
-    {
-    }
+     internal partial class Dishwasher
+     {
+        public void DryingMode(ref double operatingTime)
+        {
+            _operatingTime = operatingTime;
+            _powerConsumption = 0.60 * operatingTime;
+        }
+     }
 }

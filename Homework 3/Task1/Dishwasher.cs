@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Task1
 {
-    internal class Dishwasher
+    internal partial class Dishwasher
     {
         private string _model;
         private double _operatingTime;
         private double _waterConsumption;
         private double _powerConsumption;
-        private int _waterTemperature;
+        private double _waterTemperature;
         private int _maxLoading;
         private double _useCount;
-        private static int _warranty;
+        private static double _warranty;
         private static string _serviceCenterAddress;
         
         public Dishwasher()
@@ -43,7 +43,7 @@ namespace Task1
 
         static Dishwasher()
         {
-            _warranty = 24;
+            _warranty = 36.0;
             _serviceCenterAddress = "Minsk city Lenin street building 10";
         }
 
@@ -52,18 +52,34 @@ namespace Task1
             _powerConsumption += 0.70;
             _waterConsumption += 6.55;
             _operatingTime = 40.0;
-            _waterTemperature = _waterConsumption * _operatingTime / 4;
+            _waterTemperature = _waterConsumption * _operatingTime / _maxLoading;
+            _useCount += 0.01;
+            _warranty -= _useCount;
         }
 
         public void EveryDayMode()
         {
-
+            _powerConsumption += 0.98;
+            _waterConsumption += 9.2;
+            _operatingTime = 70.0;
+            _waterTemperature = _waterConsumption * _operatingTime / _maxLoading;
+            _useCount += 0.01;
+            _warranty -= _useCount;
         }
 
-        public void FastMode(int operatingTime)
+        public void FastMode(ref double operatingTime)
         {
-
+           _operatingTime = operatingTime;
+           _powerConsumption += 0.95;
+           _waterConsumption += 8.1;
+           _waterTemperature = _waterConsumption * _operatingTime / _maxLoading;
         }
+
+        public double WaterConsumption => _waterConsumption;
+        public double PowerConsumption => _powerConsumption;
+        public int MaxLoading => _maxLoading;
+        public static double Warranrty => _warranty;
+        public static string ServiceCenterAddress => _serviceCenterAddress;
 
 
 
