@@ -20,7 +20,7 @@ namespace Task2
             Console.WriteLine();
             Console.WriteLine("Enter the elements of Matrix");
             matr3.UserInitMatrix();
-
+            Console.WriteLine();
             Console.WriteLine($"Column count of matr2 {matr2.Column}");
             Console.WriteLine($"Line count of mart2 {matr2.Line}");
 
@@ -31,12 +31,13 @@ namespace Task2
             Console.WriteLine($"Summ of first line in matr2 {matr2.SummFirstLine}");
 
             Console.WriteLine($"Copy of matr1 {Matrix.MakeCopy(matr1)}");
-
             Console.WriteLine($"matr2 multiplied by itself {matr2 *= matr2}");
 
-            Console.WriteLine($"Copy of matr1 {Matrix.MakeCopy(matr1)}");
-            Console.WriteLine($"Copy of matr1 {Matrix.MakeCopy(matr1)}");
-            Console.WriteLine($"Sort by columns of matr2 {Matrix.SortByColumn(matr2)}");
+            Console.WriteLine($"Copy of matr2 {matr2.Transpose()}");
+            Console.WriteLine($"Copy of matr3 {matr3.ChangingDiagonals()}");
+            Console.WriteLine($"Sort by columns of matr2 {matr2.SortByColumn()}");
+
+            Console.ReadKey();
         }
     }
 }

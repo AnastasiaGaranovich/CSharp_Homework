@@ -12,13 +12,25 @@ namespace Task2
         #region Fields and Properties
         static Random _rnd = new Random();
         private int _columnSize;
+        /// <value>
+        /// public int Column => _columnSize
+        /// Get Columns count
+        /// </value>
         public int Column => _columnSize;
 
         private int _lineSize;
+        /// <value>
+        /// public int Line => _lineSize
+        /// Get Lines count
+        /// </value>
         public int Line => _lineSize;
 
         private int[ , ] _matrix;
 
+        /// <value>
+        /// public int Max
+        /// Get Max element in the matrix
+        /// </value>
         public int Max
         {
             get
@@ -38,6 +50,10 @@ namespace Task2
             }
         }
 
+        /// <value>
+        /// public int Min
+        /// Get Min element in the matrix
+        /// </value>
         public int Min
         {
             get
@@ -57,6 +73,10 @@ namespace Task2
             }
         }
 
+        /// <value>
+        ///  public int SummFirstLine
+        /// Get summ of the first line in the matrix
+        /// </value>
         public int SummFirstLine
         {
             get
@@ -69,7 +89,10 @@ namespace Task2
                 return summ;
             }
         }
-
+        /// <value>
+        /// public int SummFirstColumn
+        /// Get summ of the first column in the matrix
+        /// </value>
         public int SummFirstColumn
         {
             get
@@ -89,6 +112,10 @@ namespace Task2
         }
 
         #region Methods
+        /// <summary>
+        /// public void InitMatrix()
+        /// Initialization matrix by 0
+        /// </summary>
         public void InitMatrix()
         {
             for(int i = 0; i < _lineSize; i++)
@@ -100,6 +127,10 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// public void InitMatrixRandom()
+        /// Initialization matrix by random numbers 1-9
+        /// </summary>
         public void InitMatrixRandom()
         {
             for (int i = 0; i < _lineSize; i++)
@@ -111,6 +142,10 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// public void UserInitMatrix()
+        /// Initialization matrix by users numbers
+        /// </summary>
         public void UserInitMatrix()
         {
             for (int i = 0; i < _lineSize; i++)
@@ -122,13 +157,18 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// public void UserInitMatrix()
+        /// Make copy of matrix
+        /// </summary>
+        /// <param name="originalMatrix"></param>
+        /// <returns matrixCopy></returns>
         public static Matrix MakeCopy(Matrix originalMatrix)
         {
-            int i, j;
             Matrix matrixCopy = new Matrix(originalMatrix.Line, originalMatrix.Column);
-            for (i = 0; i < originalMatrix.Line; i++)
+            for (int i = 0; i < originalMatrix.Line; i++)
             {
-                for (j = 0; j < originalMatrix.Column; j++)
+                for (int j = 0; j < originalMatrix.Column; j++)
                 {
                     matrixCopy[i, j] = originalMatrix[i, j];
                 }
@@ -136,6 +176,13 @@ namespace Task2
             return matrixCopy;
         }
 
+        /// <summary>
+        /// public int this[int i, int j]
+        /// Indexer
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
         public int this[int i, int j]
         {
             get
@@ -148,6 +195,13 @@ namespace Task2
             }
         }
 
+        /// <summary>
+        /// public static Matrix operator *(Matrix firstMatrix, Matrix secondMatrix)
+        /// multiplies matrices
+        /// </summary>
+        /// <param name="firstMatrix"></param>
+        /// <param name="secondMatrix"></param>
+        /// <returns firstMatrix></returns>
         public static Matrix operator *(Matrix firstMatrix, Matrix secondMatrix)
         {
             if(firstMatrix.Column != secondMatrix.Column && firstMatrix.Line != secondMatrix.Line)
@@ -164,58 +218,81 @@ namespace Task2
             return firstMatrix;
         }
 
-        public Matrix Transpose(Matrix matrix)
+        /// <summary>
+        /// public Matrix Transpose()
+        /// Transpose the matrix
+        /// </summary>
+        /// <returns this></returns>
+        public Matrix Transpose()
         {
-            int temporary;
-            for (int i = 0; i < matrix.Line; ++i)
+            if (_columnSize != _lineSize)
             {
-                for (int j = i; j < matrix.Column; ++j)
+                throw new ArgumentException("Matrix sizes do not match");
+            }
+            int temporary = 0;
+            for (int i = 0; i < _lineSize; ++i)
+            {
+                for (int j = i; j < _columnSize; ++j)
                 {
-                    temporary = matrix[i, j];
-                    matrix[i, j] = matrix[j, i];
-                    matrix[j, i] = temporary;
+                    temporary = _matrix[i, j];
+                    _matrix[i, j] = _matrix[j, i];
+                    _matrix[j, i] = temporary;
                 }
             }
-            return matrix;
+            return this;
         }
 
-        public Matrix ChangingDiagonals(Matrix matrix)
+        /// <summary>
+        /// public Matrix ChangingDiagonals()
+        /// Change matrix diagonals 
+        /// </summary>
+        /// <returns this></returns>
+        public Matrix ChangingDiagonals()
         {
-            int temporary = 0;
-            for (int i = 0; i < matrix.Line; i++)
+            if(_columnSize != _lineSize)
             {
-                for (int j = 0; j < matrix.Column; j++)
+                throw new ArgumentException("Matrix sizes do not match");
+            }
+            int temporary = 0;
+            for (int i = 0; i < _lineSize; i++)
+            {
+                for (int j = 0; j < _columnSize; j++)
                 {
                     if (i == j)
                     {
-                        temporary = matrix[i, j];
-                        matrix[i, j] = matrix[i, matrix.Line - 1 - j];
-                        matrix[i, matrix.Line - 1 - j] = temporary;
+                        temporary = _matrix[i, j];
+                        _matrix[i, j] = _matrix[i, _lineSize - 1 - j];
+                        _matrix[i, _lineSize - 1 - j] = temporary;
                     }
                 }    
             }  
-            return matrix;
+            return this;
         }
 
-        public Matrix SortByColumn(Matrix matrix)
+        /// <summary>
+        /// public Matrix SortByColumn()
+        /// Sorting matrix by column
+        /// </summary>
+        /// <returns this></returns>
+        public Matrix SortByColumn()
         {
             int temporary = 0;
-            for (int i = 0; i < matrix.Line; i++)
+            for (int i = 0; i < _lineSize; i++)
             {
-                for (int j = 0; j < matrix.Column; j++)
+                for (int j = 0; j < _columnSize; j++)
                 {
-                    for (int k = j; k < matrix.Column; k++)
+                    for (int k = j; k < _columnSize; k++)
                     {
-                        if ((matrix[i, j] < matrix[i, k]) && (matrix[i, j] > 0))
+                        if ((_matrix[i, j] < _matrix[i, k]) && (_matrix[i, j] > 0))
                         {
-                            temporary = matrix[i, j];
-                            matrix[i, j] = matrix[i, k];
-                            matrix[i, k] = temporary;
+                            temporary = _matrix[i, j];
+                            _matrix[i, j] = _matrix[i, k];
+                            _matrix[i, k] = temporary;
                         }
                     }
                 }
             }
-            return matrix;
+            return this;
         }
         #endregion
     }
