@@ -49,7 +49,7 @@ namespace Task1
 
         public void EcoMode()
         {
-            _powerConsumption += 0.70;
+            _powerConsumption -= 0.70;
             _waterConsumption += 6.55;
             _operatingTime = 40.0;
             _waterTemperature = _waterConsumption * _operatingTime / _maxLoading;
@@ -67,12 +67,13 @@ namespace Task1
             _warranty -= _useCount;
         }
 
-        public void FastMode(ref double operatingTime)
+        public void FastMode(double operatingTime, ref double temperature)
         {
            _operatingTime = operatingTime;
            _powerConsumption += 0.95;
            _waterConsumption += 8.1;
            _waterTemperature = _waterConsumption * _operatingTime / _maxLoading;
+           temperature = _waterTemperature;
         }
 
         public double WaterConsumption => _waterConsumption;

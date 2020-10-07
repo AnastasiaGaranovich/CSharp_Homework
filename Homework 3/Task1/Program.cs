@@ -17,15 +17,17 @@ namespace Task1
             dishwashers[3] = new Dishwasher("Samsung", 12);
             dishwashers[4] = new Dishwasher("Bosch", 10.2, 0.99);
 
-            double operatingTimeForDry = 15.5;
-            double operatingTimeForFast = 25.8;
-
+            double dryingTime = 15.0;
+            double fastModeTime = 25.5;
+            double temperature = 45.9;
             dishwashers[0].EcoMode();
-            dishwashers[2].DryingMode(ref operatingTimeForDry);
+            dishwashers[2].DryingMode(dryingTime);
             dishwashers[4].EveryDayMode();
-            dishwashers[3].FastMode(ref operatingTimeForFast);
+            dishwashers[3].FastMode(fastModeTime, ref temperature);
 
             Console.WriteLine(dishwashers[2].MaxLoading);
+
+            Console.ReadKey();
         }
     }
 }
