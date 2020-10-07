@@ -9,6 +9,7 @@ namespace Task2
 {
     internal class Matrix
     {
+        #region Fields and Properties
         static Random _rnd = new Random();
         private int _columnSize;
         public int Column => _columnSize;
@@ -23,9 +24,9 @@ namespace Task2
             get
             {
                 int maxElement = int.MinValue;
-                for (int i = 0; i < _columnSize; i++)
+                for (int i = 0; i < _lineSize; i++)
                 {
-                    for (int j = 0; j < _lineSize; j++)
+                    for (int j = 0; j < _columnSize; j++)
                     {
                         if (_matrix[i, j] > maxElement)
                         {
@@ -42,9 +43,9 @@ namespace Task2
             get
             {
                 int minElement = int.MaxValue;
-                for (int i = 0; i < _columnSize; i++)
+                for (int i = 0; i < _lineSize; i++)
                 {
-                    for (int j = 0; j < _lineSize; j++)
+                    for (int j = 0; j < _columnSize; j++)
                     {
                         if (_matrix[i, j] > minElement)
                         {
@@ -56,16 +57,43 @@ namespace Task2
             }
         }
 
-        public Matrix(int columnSize, int lineSize)
+        public int SummFirstLine
         {
-            _matrix = new int[columnSize, lineSize];
+            get
+            {
+                int summ = 0;
+                for (int i = 0; i < _columnSize; i++)
+                {
+                    summ = _matrix[0, i];
+                }
+                return summ;
+            }
         }
 
+        public int SummFirstColumn
+        {
+            get
+            {
+                int summ = 0;
+                for (int i = 0; i < _lineSize; i++)
+                {
+                    summ = _matrix[i, 0];
+                }
+                return summ;
+            }
+        }
+        #endregion
+        public Matrix(int lineSize, int columnSize)
+        {
+            _matrix = new int[lineSize, columnSize];
+        }
+
+        #region Methods
         public void InitMatrix()
         {
-            for(int i = 0; i < _columnSize; i++)
+            for(int i = 0; i < _lineSize; i++)
             {
-                for(int j = 0; j < _lineSize; j++)
+                for(int j = 0; j < _columnSize; j++)
                 {
                     _matrix[i, j] = 0;
                 }
@@ -74,9 +102,9 @@ namespace Task2
 
         public void InitMatrixRandom()
         {
-            for (int i = 0; i < _columnSize; i++)
+            for (int i = 0; i < _lineSize; i++)
             {
-                for (int j = 0; j < _lineSize; j++)
+                for (int j = 0; j < _columnSize; j++)
                 {
                     _matrix[i, j] = _rnd.Next(1, 9);
                 }
@@ -85,22 +113,22 @@ namespace Task2
 
         public void UserInitMatrix()
         {
-            for (int i = 0; i < _columnSize; i++)
+            for (int i = 0; i < _lineSize; i++)
             {
-                for (int j = 0; j < _lineSize; j++)
+                for (int j = 0; j < _columnSize; j++)
                 {
                     _matrix[i, j] = Convert.ToInt32(Console.ReadLine());
                 }
             }
         }
 
-        public static Matrix MakeCopy(Matrix originalMatrix, int column, int line)
+        public static Matrix MakeCopy(Matrix originalMatrix)
         {
             int i, j;
-            Matrix matrixCopy = new Matrix(column, line);
-            for (i = 0; i < originalMatrix.Column; i++)
+            Matrix matrixCopy = new Matrix(originalMatrix.Line, originalMatrix.Column);
+            for (i = 0; i < originalMatrix.Line; i++)
             {
-                for (j = 0; j < originalMatrix.Line; j++)
+                for (j = 0; j < originalMatrix.Column; j++)
                 {
                     matrixCopy[i, j] = originalMatrix[i, j];
                 }
@@ -126,9 +154,9 @@ namespace Task2
             {
                 throw new ArgumentException("Matrix sizes do not match");
             }
-            for(int i = 0; i < firstMatrix.Column; i++)
+            for(int i = 0; i < firstMatrix.Line; i++)
             {
-                for(int j = 0; j < firstMatrix.Line; j++)
+                for(int j = 0; j < firstMatrix.Column; j++)
                 {
                     firstMatrix[i, j] *= secondMatrix[i, j];
                 }
@@ -139,9 +167,9 @@ namespace Task2
         public Matrix Transpose(Matrix matrix)
         {
             int temporary;
-            for (int i = 0; i < matrix.Column; ++i)
+            for (int i = 0; i < matrix.Line; ++i)
             {
-                for (int j = i; j < matrix.Line; ++j)
+                for (int j = i; j < matrix.Column; ++j)
                 {
                     temporary = matrix[i, j];
                     matrix[i, j] = matrix[j, i];
@@ -150,5 +178,45 @@ namespace Task2
             }
             return matrix;
         }
+
+        public Matrix ChangingDiagonals(Matrix matrix)
+        {
+            int temporary = 0;
+            for (int i = 0; i < matrix.Line; i++)
+            {
+                for (int j = 0; j < matrix.Column; j++)
+                {
+                    if (i == j)
+                    {
+                        temporary = matrix[i, j];
+                        matrix[i, j] = matrix[i, matrix.Line - 1 - j];
+                        matrix[i, matrix.Line - 1 - j] = temporary;
+                    }
+                }    
+            }  
+            return matrix;
+        }
+
+        public Matrix SortByColumn(Matrix matrix)
+        {
+            int temporary = 0;
+            for (int i = 0; i < matrix.Line; i++)
+            {
+                for (int j = 0; j < matrix.Column; j++)
+                {
+                    for (int k = j; k < matrix.Column; k++)
+                    {
+                        if ((matrix[i, j] < matrix[i, k]) && (matrix[i, j] > 0))
+                        {
+                            temporary = matrix[i, j];
+                            matrix[i, j] = matrix[i, k];
+                            matrix[i, k] = temporary;
+                        }
+                    }
+                }
+            }
+            return matrix;
+        }
+        #endregion
     }
 }
