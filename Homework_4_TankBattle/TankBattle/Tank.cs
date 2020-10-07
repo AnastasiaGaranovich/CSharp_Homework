@@ -42,7 +42,7 @@ namespace TankBattle
 
         public string Discription()
         {
-            return $"{Name}  {Ammunition}  {Armor}  {Speed}";
+            return $"{Name}\t{Ammunition,8}{Armor,9}{Speed,9}";
         }
 
         public static Tank operator ^(Tank tankSovet, Tank tankGermany)

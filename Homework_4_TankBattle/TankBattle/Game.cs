@@ -33,12 +33,12 @@ namespace TankBattle
         {
             for (int i = 0; i < countTanks; i++)
             {
-                Console.WriteLine("Rivals  Ammunition  Armor  Speed");
-                Console.WriteLine("----------------------------------------");
+                Console.WriteLine("Rivals\t Ammunition   Armor    Speed");
+                Console.WriteLine(("").PadRight(45, '-'));
                 Console.WriteLine($"Battle {i + 1}--------------------------------");
                 Console.WriteLine(_tanksGermany[i].Discription());
                 Console.WriteLine(_tanksSovet[i].Discription());
-                Console.WriteLine("-------------------------------------------");
+                Console.WriteLine(("").PadRight(45, '-'));
             }
             for (int i = 0; i < countTanks; i++)
             {
