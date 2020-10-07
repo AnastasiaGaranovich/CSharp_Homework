@@ -20,10 +20,12 @@ namespace Task1
             double dryingTime = 15.0;
             double fastModeTime = 25.5;
             double temperature = 45.9;
+
             dishwashers[0].EcoMode();
             dishwashers[2].DryingMode(dryingTime);
             dishwashers[4].EveryDayMode();
             dishwashers[3].FastMode(fastModeTime, ref temperature);
+            Console.WriteLine($"Water temperature in fast mode {temperature}");
 
             Console.WriteLine(dishwashers[2].MaxLoading);
 
