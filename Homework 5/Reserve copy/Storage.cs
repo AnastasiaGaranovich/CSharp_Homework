@@ -11,8 +11,8 @@ namespace Reserve_copy
         private string _nameCarrier;
         private string _model;
 
-        public abstract string NameCarrier { get; set; }
-        public string Model => _model;
+        public virtual string NameCarrier { get; set; }
+        public virtual string Model => _model;
 
         public Storage(string name, string model) : base()
         {
@@ -24,7 +24,7 @@ namespace Reserve_copy
 
         public abstract int FreeMemorySize();
 
-        public abstract void MakeCopy();
+        public abstract void MakeCopy(int info);
 
         public abstract int TimeForCopy();
 
