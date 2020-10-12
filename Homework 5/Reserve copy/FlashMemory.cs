@@ -8,15 +8,9 @@ namespace Reserve_copy
 {
     internal class FlashMemory: Storage
     {
-        private int _speedUSB3_0;
-        private int _memorySize;
-        private int _occupiedMemory;
-        private int _timeForCopy;
-        private int _information;
 
-        public FlashMemory(string name, string model, int speed, int memory) : base(name, model)
+        public FlashMemory(string name, string model, int memory) : base(name, model)
         {
-            _speedUSB3_0 = speed;
             _memorySize = memory;
         }
 
@@ -26,26 +20,22 @@ namespace Reserve_copy
         }
 
         public override string NameCarrier 
-        { get => base.NameCarrier; set => base.NameCarrier = value; }
+        { get => _nameCarrier; set => _nameCarrier = value; }
 
-        public override string Model => base.Model;
+        public override string Model => _model;
 
-        public override int FreeMemorySize()
+        public override void MakeCopy(int infoSize)
         {
-            return _memorySize - _occupiedMemory;
+            if(FreeMemorySize() < infoSize)
+            {
+                throw new InsufficientMemoryException();
+            }
+            _occupiedMemory += infoSize;
         }
 
-        public override void MakeCopy(int info)
+        public override int WriteSpeed()
         {
-            _information = info;
-            _occupiedMemory = (_memorySize - _information) / _speedUSB3_0;
-            _timeForCopy += _occupiedMemory;
+            return 500;
         }
-
-        public override int TimeForCopy()
-        {
-            return _timeForCopy;
-        }
-
     }
 }
