@@ -22,9 +22,14 @@ namespace Card_Game
                     _deck.Add(new Card(suit, rank));
                 }
             }
-            Console.WriteLine(_deck.Count);
+            Shuffle();
+            _players = new List<Player>();
         }
-        public void Shuffle()
+        public void AddPlayer(Player player)
+        {
+            _players.Add(player);
+        }
+        private void Shuffle()
         {
             int n = _deck.Count;
             while (n > 1)
@@ -36,6 +41,29 @@ namespace Card_Game
                 _deck[n] = value;
             }
         }
+        public void DealCards()
+        {
+            if(_players.Count == 5)
+            {
+                _deck.RemoveAt(0);
+            }
+            while(_deck.Count != 0)
+            {
+                foreach(Player player in _players)
+                {
+                    Card firstCard = _deck[0];
+                    _deck.RemoveAt(0);
+                    player.AddCard(firstCard);
+                }
+            }
+        }
+        public void StartGame()
+        {
+            foreach(Player player in _players)
+            {
+
+            }
+        } 
 
     }
 }

@@ -16,15 +16,15 @@ namespace Card_Game
 
     enum Rank
     {
-        Ace,
-        King,
-        Queen,
-        Jack,
-        Ten,
-        Nine,
-        Eight,
+        Six,
         Seven,
-        Six
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King,
+        Ace
     }
 
     internal class Card

@@ -24,6 +24,10 @@ namespace Card_Game
                 Console.WriteLine(card);
             }
         }
+        public void AddCard(Card card) 
+        {
+            _cards.Add(card);
+        }
 
     }
 }
