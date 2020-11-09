@@ -10,11 +10,16 @@ namespace Card_Game
     {
         private string _name;
         private List<Card> _cards;
+        private int _move;
 
+        public int Move => _move;
+        public string Name => _name;
+        public List<Card> Cards => _cards;
+        public bool IsLoser => _cards.Count == 0;
         public Player(string name)
         {
             _name = name;
-            List<Card> _cards = new List<Card>();
+            _cards = new List<Card>();
         }
         public void CardOutput()
         {
@@ -28,6 +33,12 @@ namespace Card_Game
         {
             _cards.Add(card);
         }
-
+        public Card MakeMove()
+        {
+            Card cardOnTable = _cards[0];
+            _cards.RemoveAt(0);
+            _move++;
+            return cardOnTable;
+        }
     }
 }

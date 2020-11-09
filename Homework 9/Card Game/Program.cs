@@ -25,8 +25,12 @@ namespace Card_Game
                 game.AddPlayer(new Player(name));
             }
             game.DealCards();
-
-
+            
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            game.StartGame();
+            watch.Stop();
+            double elapsedMs = watch.ElapsedMilliseconds;
+            Console.WriteLine($"Game lasted {elapsedMs/1000} seconds");
             Console.ReadKey();
         }
     }

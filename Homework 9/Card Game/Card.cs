@@ -31,6 +31,8 @@ namespace Card_Game
     {
         private Suit _cardSuit;
         private Rank _cardRank;
+
+        public Rank Rank => _cardRank;
         public Card(Suit suit, Rank rank)
         {
             _cardSuit = suit;
@@ -82,6 +84,16 @@ namespace Card_Game
         public override string ToString()
         {
             return $"Suit {SuitToString(_cardSuit)} Rank {RankToString(_cardRank)}";
+        }
+        public static bool operator ==(Card card1, Card card2)
+        {
+            return (card1._cardSuit == card2._cardSuit
+                        && card1._cardRank == card2._cardRank);
+        }
+        public static bool operator !=(Card card1, Card card2)
+        {
+            return (card1._cardSuit != card2._cardSuit
+                        && card1._cardRank != card2._cardRank);
         }
     }
 }
