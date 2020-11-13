@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_1", "Homework 11\Task_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task_2", "Task_2\Task_2.csproj", "{8EDA36E5-4F3F-42E0-86F0-E1797C649800}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherLib", "WeatherLib\WeatherLib.csproj", "{ED5CBD29-B695-4DE7-89B9-52E47322FC9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8EDA36E5-4F3F-42E0-86F0-E1797C649800}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDA36E5-4F3F-42E0-86F0-E1797C649800}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EDA36E5-4F3F-42E0-86F0-E1797C649800}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED5CBD29-B695-4DE7-89B9-52E47322FC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED5CBD29-B695-4DE7-89B9-52E47322FC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED5CBD29-B695-4DE7-89B9-52E47322FC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED5CBD29-B695-4DE7-89B9-52E47322FC9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
